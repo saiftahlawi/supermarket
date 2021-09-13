@@ -17,12 +17,13 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Auth::routes();
 Route::resource('products',ProductController::class);
 Route::get('products/soft/delete/{id}', [ProductController::class, 'softDelete'])->name('soft.delete');
 Route::get('product/trash', [ProductController::class, 'TrashedProducts'])->name('product.trash');
 Route::get('product/back/from/trash/{id}', [ProductController::class, 'backFromSoftDelete'])->name('product.back.trash');
 Route::get('product/delete/from/db/{id}', [ProductController::class, 'DeleteForEver'])->name('delete.from.db');
-
-
-Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
